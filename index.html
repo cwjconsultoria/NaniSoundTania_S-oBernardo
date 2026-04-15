@@ -3,123 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>São Bernardo – 6x1</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <title>São Bernardo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-accent: #1a0000;
+            --red-main: #CC0000;
+            --red-bright: #FF2020;
+        }
         body {
-            width: 600px;
-            height: 100px;
-            overflow: hidden;
-            background: #000;
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, var(--bg-accent) 0%, var(--bg-dark) 100%);
+            margin: 0;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .widget {
-            width: 600px;
-            height: 100px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(ellipse at center, #1a0000 0%, #080808 70%, #000 100%);
+            min-height: 100vh;
             overflow: hidden;
         }
 
-        /* Starfield / space background */
-        .stars {
+        .bar-left {
             position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(1px 1px at 10% 20%, rgba(100,120,255,0.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 30% 70%, rgba(150,170,255,0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 55% 40%, rgba(100,130,255,0.35) 0%, transparent 100%),
-                radial-gradient(1px 1px at 80% 15%, rgba(120,150,255,0.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 90% 80%, rgba(80,110,255,0.25) 0%, transparent 100%),
-                radial-gradient(1px 1px at 20% 85%, rgba(100,130,255,0.2) 0%, transparent 100%),
-                radial-gradient(1.5px 1.5px at 70% 60%, rgba(150,180,255,0.2) 0%, transparent 100%);
-        }
-
-        /* Red glow behind text */
-        .glow {
-            position: absolute;
-            width: 400px;
-            height: 80px;
-            background: radial-gradient(ellipse, rgba(180,0,0,0.25) 0%, transparent 70%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Corner brackets */
-        .corner {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-color: #CC0000;
-            border-style: solid;
-            opacity: 0.85;
-        }
-        .tl { top: 6px; left: 6px;  border-width: 2px 0 0 2px; }
-        .tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
-        .bl { bottom: 6px; left: 6px;  border-width: 0 0 2px 2px; }
-        .br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
-
-        /* Vertical red bars */
-        .bar { 
-            position: absolute;
-            top: 14px; bottom: 14px;
-            width: 3px;
-            background: linear-gradient(to bottom, transparent, #CC0000, transparent);
-            border-radius: 2px;
+            left: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 55vh;
+            background: linear-gradient(to bottom, transparent, var(--red-main), transparent);
+            border-radius: 4px;
             opacity: 0.8;
         }
-        .bar-l { left: 22px; }
-        .bar-r { right: 22px; }
+        .bar-right {
+            position: absolute;
+            right: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 55vh;
+            background: linear-gradient(to bottom, transparent, var(--red-main), transparent);
+            border-radius: 4px;
+            opacity: 0.8;
+        }
 
-        /* Text block */
-        .text-block {
-            position: relative;
-            z-index: 10;
+        .corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-color: var(--red-main);
+            border-style: solid;
+            opacity: 0.5;
+        }
+        .corner-tl { top: 2rem; left: 2rem; border-width: 3px 0 0 3px; }
+        .corner-tr { top: 2rem; right: 2rem; border-width: 3px 3px 0 0; }
+        .corner-bl { bottom: 2rem; left: 2rem; border-width: 0 0 3px 3px; }
+        .corner-br { bottom: 2rem; right: 2rem; border-width: 0 3px 3px 0; }
+
+        .content-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
+            z-index: 10;
+            position: relative;
+        }
+
+        .text-huge {
             font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
             text-transform: uppercase;
-            line-height: 1;
-            letter-spacing: -0.01em;
-        }
-
-        .line-sao {
-            font-size: 32px;
             color: #FFFFFF;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
 
-        .line-bernardo {
-            font-size: 42px;
-            color: #FF1A1A;
-            text-shadow: 0 0 25px rgba(220,0,0,0.6), 0 0 8px rgba(255,0,0,0.4);
+        .text-red {
+            color: var(--red-bright);
+            text-shadow: 0 0 40px rgba(204,0,0,0.4);
+        }
+
+        .subtext {
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red-main);
+            border-radius: 2px;
+            margin: 1.2rem auto;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.55) 100%);
+            pointer-events: none;
+        }
+
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(180,0,0,0.12) 0%, transparent 70%);
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <div class="widget">
-        <div class="stars"></div>
-        <div class="glow"></div>
+    <div class="vignette"></div>
+    <div class="glow"></div>
 
-        <div class="corner tl"></div>
-        <div class="corner tr"></div>
-        <div class="corner bl"></div>
-        <div class="corner br"></div>
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
 
-        <div class="bar bar-l"></div>
-        <div class="bar bar-r"></div>
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
 
-        <div class="text-block">
-            <div class="line-sao">SÃO</div>
-            <div class="line-bernardo">BERNARDO</div>
+    <div class="content-wrapper">
+        <h1 class="text-huge text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            SÃO<br>
+            <span class="text-red">BERNARDO</span>
+        </h1>
+
+        <div class="divider"></div>
+
+        <p class="subtext text-[8px] sm:text-[10px] md:text-[11px]">
+            ESPECIALISTA EM VENDAS AUTOMOTIVAS
+        </p>
+
+        <div class="animate-bounce-slow mt-1" style="color: var(--red-main);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
         </div>
     </div>
 </body>
