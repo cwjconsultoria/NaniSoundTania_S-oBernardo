@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>São Bernardo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-accent: #1a0000;
+            --red-main: #CC0000;
+            --red-bright: #FF2020;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, var(--bg-accent) 0%, var(--bg-dark) 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Red vertical accent bars — inspired by Nani Sound layout */
+        .bar-left {
+            position: absolute;
+            left: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 55vh;
+            background: linear-gradient(to bottom, transparent, var(--red-main), transparent);
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+        .bar-right {
+            position: absolute;
+            right: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 55vh;
+            background: linear-gradient(to bottom, transparent, var(--red-main), transparent);
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        /* Corner rectangles like in the Nani Sound site */
+        .corner {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-color: var(--red-main);
+            border-style: solid;
+            opacity: 0.5;
+        }
+        .corner-tl { top: 2rem; left: 2rem; border-width: 3px 0 0 3px; }
+        .corner-tr { top: 2rem; right: 2rem; border-width: 3px 3px 0 0; }
+        .corner-bl { bottom: 2rem; left: 2rem; border-width: 0 0 3px 3px; }
+        .corner-br { bottom: 2rem; right: 2rem; border-width: 0 3px 3px 0; }
+
+        .content-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .text-huge {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+
+        /* "SÃO" in white, "BERNARDO" in red — mimicking Nani Sound's mixed color headline */
+        .text-red {
+            color: var(--red-bright);
+            text-shadow: 0 0 40px rgba(204,0,0,0.4);
+        }
+
+        .subtext {
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        /* Red divider line */
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--red-main);
+            border-radius: 2px;
+            margin: 1.2rem auto;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        /* Radial vignette */
+        .vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.55) 100%);
+            pointer-events: none;
+        }
+
+        /* Subtle red glow behind text */
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(180,0,0,0.12) 0%, transparent 70%);
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="vignette"></div>
+    <div class="glow"></div>
+
+    <!-- Accent bars -->
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
+
+    <!-- Corner decorations -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="content-wrapper">
+        <h1 class="text-huge text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+            SÃO<br>
+            <span class="text-red">BERNARDO</span>
+        </h1>
+
+        <div class="divider"></div>
+
+        <p class="subtext text-[9px] sm:text-[11px] md:text-[13px]">
+            ESPECIALISTA EM VENDAS AUTOMOTIVAS
+        </p>
+
+        <div class="text-white animate-bounce-slow mt-1" style="color: var(--red-main);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
